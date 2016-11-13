@@ -50,7 +50,8 @@ app.get('/posts/:lat/:lon', function(req, res) {
 
 })
 
-app.listen(5000, function() {
+var port = process.env.PORT || 5000
+app.listen(port, function() {
   console.log('Running on port 5000. Press <Ctrl + C> to quit.')
 })
 
