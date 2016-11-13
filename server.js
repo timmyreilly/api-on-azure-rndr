@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 //// Dependencies
-var admin           = require("firebase-admin")
-var serviceAccount  = process.env.secret || require("./serviceAccountCredentials.json")
+var admin           = require("firebase-admin");
+var serviceAccount  = require("./serviceAccountCredentials.json")
 var express         = require('express')
 var bodyParser      = require('body-parser')
 
