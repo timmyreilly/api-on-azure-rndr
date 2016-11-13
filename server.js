@@ -2,9 +2,16 @@
 
 //// Dependencies
 var admin           = require("firebase-admin");
-var serviceAccount  = require("./serviceAccountCredentials.json")
 var express         = require('express')
 var bodyParser      = require('body-parser')
+
+var inHeroku  = process.env.heroku || false
+if (!inHeroku) {
+   serviceAccount = require("./serviceAccountCredentials.json")
+} else {
+  console.log('in heroku')
+  var serviceAccount = getLocalHerokuCert()
+}
 
 var app = express()
 app.use(bodyParser.json())
@@ -137,4 +144,12 @@ function distanceInFeet(point1, point2) {
 
   var FEET_KM_CONSTANT = 3.280839895;
   return d * FEET_KM_CONSTANT;
+}
+
+function getLocalHerokuCert() {
+  return {
+    projectId: process.env.project_id,
+    clientEmail: process.env.email,
+    private_key: process.env.key,
+  }
 }
