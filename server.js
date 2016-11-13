@@ -150,6 +150,6 @@ function getLocalHerokuCert() {
   return {
     projectId: process.env.project_id,
     clientEmail: process.env.email,
-    private_key: process.env.key,
+    private_key: process.env.key.replace(/\\n/g, '\n'),
   }
 }
